@@ -13,7 +13,9 @@ resource "aws_subnet" "public_subnet" {
   # cidr_block        = "10.200.0.0/24"
 
   # Defining Cidr Blocks
-  cidr_block = each.value["cidr"]
+  cidr_block              = each.value["cidr"]
+  map_public_ip_on_launch = true
+
   tags = {
     Name = "MoSalah-Public-Subnet"
   }
