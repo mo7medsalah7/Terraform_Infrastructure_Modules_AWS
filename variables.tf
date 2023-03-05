@@ -44,8 +44,8 @@ variable "subnet_count" {
   description = "Count The Subnets"
   type        = map(number)
   default = {
-    public  = 2
-    private = 1
+    public  = 1
+    private = 2
   }
 }
 

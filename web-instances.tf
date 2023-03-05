@@ -1,4 +1,4 @@
-resource "aws_instance" "ec2_1" {
+resource "aws_instance" "MoSalah_Instance" {
   for_each               = aws_subnet.public_subnet
   subnet_id              = each.value.id
   ami                    = var.ec2_instance_ami
@@ -15,6 +15,6 @@ resource "aws_instance" "ec2_1" {
        EOF
 
   tags = {
-    name = "MoSalah_Instance"
+    Name = "MoSalah_Instance"
   }
 }
