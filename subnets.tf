@@ -1,7 +1,7 @@
 data "aws_vpc" "our_vpc" {
   id = var.vpc_id
 }
-
+# Public Subnet Creation
 resource "aws_subnet" "public_subnet" {
   vpc_id   = data.aws_vpc.our_vpc.id
   for_each = var.public_subnet_mapping
@@ -19,6 +19,7 @@ resource "aws_subnet" "public_subnet" {
   }
 }
 
+# Private Subnet Creation
 resource "aws_subnet" "private_subnet" {
   vpc_id = data.aws_vpc.our_vpc.id
 
@@ -51,7 +52,7 @@ resource "aws_route_table" "Public_Route_Table" {
   }
 }
 
-# Associate The Public ROuting Table
+# Associate The Public Routing Table
 resource "aws_route_table_association" "public_associate" {
   # count = var.subnet_count.public
 
@@ -84,7 +85,7 @@ resource "aws_route_table_association" "public_associate" {
 
 # }
 
-# Creating RDS Subnet
+# Creating RDS Subnet Group
 resource "aws_db_subnet_group" "db_subnet_group" {
   name        = "rds subnet group_mosalah"
   description = "DB Subnet Group"
