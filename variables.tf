@@ -4,7 +4,12 @@ variable "aws_region" {
 variable "vpc_id" {
   default = "vpc-0e32209aa932597cc"
 }
-
+variable "ec2_instance_ami" {
+  description = "the ami id of the instance "
+}
+variable "ec2_instance_type" {
+  description = "instance family "
+}
 #map of maps for create subnets
 variable "public_subnet_mapping" {
   type = map(any)
@@ -44,7 +49,10 @@ variable "subnet_count" {
   }
 }
 
-
+variable "db_name" {
+  description = "Database Name"
+  type        = string
+}
 variable "db_username" {
   description = "Database User Name"
   type        = string
