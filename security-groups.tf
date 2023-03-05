@@ -43,3 +43,34 @@ resource "aws_security_group" "allow_http_https_ssh-sg" {
     Name = "allow_http_https_ssh"
   }
 }
+
+
+# Adding the security group for our RDS
+resource "aws_security_group" "rds-sg" {
+  name        = "rds-security-group"
+  description = "Allow RDS on specific port"
+
+  vpc_id = var.vpc_id
+
+  #  Incoming Traffic for RDS traffic
+  ingress {
+    description = "RDS In"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["10.200.0.0/16"]
+  }
+
+
+  #  allow all outbound traffic from the ec2 instance
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_RDS"
+  }
+}
